@@ -1,9 +1,6 @@
 package cn.pjj.service;
 
-import cn.pjj.bean.Book;
-import cn.pjj.bean.Category;
-import cn.pjj.bean.Order;
-import cn.pjj.bean.User;
+import cn.pjj.bean.*;
 
 import java.util.List;
 
@@ -53,7 +50,7 @@ public interface BusinessService {
     /*
         订单模块
      */
-    void addOrder(Order order);
+    void addOrder(Cart cart , User user);
 
     Order findOrderById(String id);
 

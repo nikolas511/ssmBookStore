@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="login" parameterType="String" resultType="cn.pjj.bean.User">
-		select * from users where username=#{username} and password=#{password}
+		select * from users where username=#{0} and password=#{1}
 	</select>
 
 	<update id="updateUser" parameterType="cn.pjj.bean.User">
@@ -23,6 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<delete id="deleteUserById" parameterType="String">
-		delete form users where id=#{id}
+		delete from users where id=#{id}
 	</delete>
 </mapper>

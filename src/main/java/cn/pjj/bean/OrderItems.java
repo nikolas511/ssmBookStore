@@ -11,15 +11,15 @@ public class OrderItems {
     private String quantity;
     private double price;
     private Book book;//一个订单明细记录一本书
-//    private Order order;
-//
-//    public Order getOrder() {
-//        return order;
-//    }
-//
-//    public void setOrder(Order order) {
-//        this.order = order;
-//    }
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public String getId() {
         return id;

@@ -1,19 +1,13 @@
 package cn.pjj.service.impl;
 
-import cn.pjj.bean.Book;
-import cn.pjj.bean.Category;
-import cn.pjj.bean.Order;
-import cn.pjj.bean.User;
-import cn.pjj.dao.BookDao;
-import cn.pjj.dao.CategoryDao;
-import cn.pjj.dao.OrderDao;
-import cn.pjj.dao.UserDao;
+import cn.pjj.bean.*;
+import cn.pjj.dao.*;
 import cn.pjj.service.BusinessService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.*;
 
 @Transactional
 @Service
@@ -24,6 +18,8 @@ public class BusinessServiceImpl implements BusinessService {
     private CategoryDao categoryDao;
     @Resource
     private OrderDao orderDao;
+    @Resource
+    private OrderItemsDao orderItemsDao;
     @Resource
     private BookDao bookDao;
     //	public void setUserDao(UserDao userDao) {
@@ -86,7 +82,7 @@ public class BusinessServiceImpl implements BusinessService {
         return bookDao.find(id);
     }
     /**
-     * 目录模块
+     * 目录分类模块
      */
     @Override
     public void addCategory(Category category) {
@@ -115,37 +111,65 @@ public class BusinessServiceImpl implements BusinessService {
 
     /**
      * 订单模块
-     * @param order
+     * @param
      */
     @Override
-    public void addOrder(Order order) {
-
+    public void addOrder(Cart cart , User user) {
+        Order order = new Order();
+        order.setId(UUID.randomUUID().toString());
+        order.setState(false);
+        order.setOrdertime(new Date());
+        order.setUser(user);
+        order.setTotalprice(cart.getTotalprice());
+        orderDao.add(order);
+        Map<String,CartItem> map = cart.getMap();
+        for (Map.Entry<String, CartItem> cartItemEntry : map.entrySet()) {
+                CartItem item = cartItemEntry.getValue();
+                OrderItems orderItems = new OrderItems();
+                orderItems.setId(UUID.randomUUID().toString());
+                orderItems.setBook(item.getBook());
+                orderItems.setPrice(item.getPrice());
+                orderItems.setQuantity(item.getNumber()+"");
+                orderItems.setOrdertime(order.getOrdertime());
+                orderItems.setOrder(order);
+                orderItemsDao.add(orderItems);
+        }
     }
 
     @Override
     public Order findOrderById(String id) {
-        return null;
+        return orderDao.find(id);
     }
 
     @Override
     public List<Order> getAllOrder(boolean state) {
-        return null;
+        List<Order> orderList = orderDao.getAllOrder(state);
+        for (Order o : orderList) {
+            Set<OrderItems> items = orderItemsDao.findByOrderId(o.getId());
+            o.setOrderItems(items);
+        }
+        return orderList;
     }
 
     @Override
     public void updateOrder(String id, boolean state) {
-
+        orderDao.update(id,state);
     }
 
     @Override
     public List<Order> findUserOrder(String userid) {
-        return null;
+        List<Order> orderList = orderDao.findUserOrder(userid);
+        for (Order o : orderList) {
+            Set<OrderItems> items = orderItemsDao.findByOrderId(o.getId());
+            o.setOrderItems(items);
+        }
+        return orderList;
     }
 
     @Override
     public void deleteOrder(String id) {
-
-
+        orderDao.delete(id);
+        orderItemsDao.delete(id);
     }
 
 }

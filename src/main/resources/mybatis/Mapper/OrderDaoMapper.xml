@@ -3,7 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.pjj.dao.OrderDao">
+    <resultMap id="OrderMap" type="cn.pjj.bean.Order">
+        <id property="id" column="id"/>
+        <result property="ordertime" column="ordertime" />
+        <result property="state" column="state" />
+        <result property="totalprice" column="totalprice" />
+        <association property="user" column="user_id" select="cn.pjj.dao.UserDao.queryUserById"
+                    javaType="cn.pjj.bean.User" />
+    </resultMap>
     <insert id="add" parameterType="cn.pjj.bean.Order">
         insert into orders values(#{id},#{ordertime},#{state},#{totalprice},#{user.id})
     </insert>
+    <select id="find" parameterType="String" resultMap="OrderMap">
+        select * from orders where id=#{id}
+    </select>
+    <select id="getAllOrder" parameterType="boolean" resultMap="OrderMap">
+        select * from orders where state=#{state}
+    </select>
+    <update id="update" >
+        update orders set state=#{1} where id=#{0}
+    </update>
+    <select id="findUserOrder" parameterType="String" resultMap="OrderMap">
+        select * from orders where user_id=#{userid}
+    </select>
+    <delete id="delete" parameterType="String">
+        delete from orders where id=#{id}
+    </delete>
 </mapper>

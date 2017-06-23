@@ -28,7 +28,7 @@ public class TestBookService {
     @Test
     public void testInsert(){
         Book book = new Book();
-        book.setId("1");
+        book.setId("4");
         book.setAuthor("aaa");
         book.setBookname("你好");
         Category category = new Category();
@@ -53,5 +53,18 @@ public class TestBookService {
             System.out.println(book.getBookname());
             System.out.println(book.getCategory().getName());
         }
+    }
+
+    @Test
+    public void update() {
+        Book book = businessService.queryBookById("4");
+        book.setBookname("999999");
+        businessService.updateBook(book);
+
+    }
+
+    @Test
+    public void delete() {
+        businessService.deleteBook("4");
     }
 }
