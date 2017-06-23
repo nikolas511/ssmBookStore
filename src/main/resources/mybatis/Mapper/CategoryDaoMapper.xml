@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pjj.dao.CategoryDao">
+    <select id="findCategoryById" parameterType="String" resultType="cn.pjj.bean.Category">
+        select * from category where id=#{id}
+    </select>
+    <delete id="delete" parameterType="String">
+        delete from books where id=#{id}
+    </delete>
+    <select id="getAll" resultType="cn.pjj.bean.Category">
+        select * from category
+    </select>
+    <insert id="add" parameterType="cn.pjj.bean.Category">
+        insert into category values(#{id},#{name},#{description})
+    </insert>
+    <update id="update" parameterType="cn.pjj.bean.Category">
+        update category set name=#{name},description=#{description} where id=#{id}
+    </update>
+</mapper>

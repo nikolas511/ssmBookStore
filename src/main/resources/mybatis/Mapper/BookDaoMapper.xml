@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pjj.dao.BookDao">
+    <resultMap id="bookMapper" type="cn.pjj.bean.Book">
+        <id property="id" column="id"/>
+        <result property="bookname" column="bookname"/>
+        <result property="price" column="price"/>
+        <result property="author" column="author"/>
+        <result property="image" column="image"/>
+        <result property="description" column="description"/>
+        <association property="category" column="category_id" select="cn.pjj.dao.CategoryDao.findCategoryById"
+                     javaType="cn.pjj.bean.Category"/>
+    </resultMap>
+
+    <insert id="add" parameterType="cn.pjj.bean.Book">
+        insert into books values(#{id},#{bookname},#{price},#{author},#{image},#{description},#{category.id});
+    </insert>
+    <delete id="delete" parameterType="String">
+        delete from books where id=#{bookid}
+    </delete>
+    <update id="update" parameterType="cn.pjj.bean.Book">
+        update books set bookname=#{bookname},price=#{price},author=#{author},image=#{image},description=#{description},category_id=#{category.id}
+        where id=#{id}
+    </update>
+    <select id="find" parameterType="String" resultMap="bookMapper">
+        select * from books where id=#{id}
+    </select>
+    <select id="getAll" resultMap="bookMapper">
+        select * from books
+    </select>
+</mapper>

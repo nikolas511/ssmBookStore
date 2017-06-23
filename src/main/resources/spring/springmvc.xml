@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd "
+       default-autowire="byName">
+    <!-- 开启扫描 设置使用注解的类所在的包 此处扫描controller-->
+    <context:component-scan base-package="cn.pjj.controller"></context:component-scan>
+
+    <!-- 使用 mvc:annotation-driven代替上边注解映射器和注解适配器配置
+ mvc:annotation-driven默认加载很多的参数绑定方法，
+ 比如json转换解析器就默认加载了，如果使用mvc:annotation-driven不用配置
+ 上边的RequestMappingHandlerMapping和RequestMappingHandlerAdapter
+ 实际开发时使用mvc:annotation-driven
+  -->
+    <mvc:annotation-driven/>
+    <!-- 开启注解 -->
+    <context:annotation-config />
+
+    <!-- 视图解析器
+    解析jsp解析，默认使用jstl标签，classpath下的得有jstl的包
+     -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 配置jsp路径的前缀 -->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!-- 配置jsp路径的后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>

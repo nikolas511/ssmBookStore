@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--此配置文件暂时没用-->
+	<!--&lt;!&ndash;&lt;!&ndash; 定义别名 &ndash;&gt;&ndash;&gt;-->
+	<typeAliases>
+		<!-- 不定义alias属性默认为类名 -->
+		<typeAlias type="cn.cn.pjj.bean.User" alias="User"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="cn/pjj/dao/UserDaoMapper.xml"/>
+	</mappers>
+</configuration>

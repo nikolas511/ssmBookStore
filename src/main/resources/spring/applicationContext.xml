@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 加载配置文件 -->
+    <context:property-placeholder location="classpath:db.properties" />
+
+    <!-- database 连接配置 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+    <!-- sqlSessinFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 数据源 -->
+        <property name="dataSource" ref="dataSource" />
+        <!--&lt;!&ndash; 加载mybatis的配置文件 &ndash;&gt;-->
+        <!--<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />-->
+        <!-- 指定mapper.xml 文件，扫描所有的文件 -->
+        <property name="mapperLocations" value="classpath:mybatis/Mapper/*.xml"/>
+    </bean>
+
+    <!-- 事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <!-- 开启注解扫描包 扫描注解-->
+    <context:component-scan base-package="cn.pjj.*"/>
+
+
+    <!-- mapper批量扫描，从mapper包中扫描出mapper接口，自动创建代理对象并且在
+    spring容器中注册 遵循规范：将mapper.java和mapper.xml映射文件名称保持一致，
+    且在一个目录中自动扫描出来的mapper的bean的id为mapper类名（首字母小写） -->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+            <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+            <!-- 指定扫描的包名 如果扫描多个包，每个包中间使用半角逗号分隔 -->
+            <property name="basePackage" value="cn.pjj.dao" />
+        </bean>
+
+</beans>

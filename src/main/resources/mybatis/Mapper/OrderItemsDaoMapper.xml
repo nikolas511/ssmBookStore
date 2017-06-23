@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.pjj.dao.OrderItemsDao">
+    <resultMap id="OrderitemsMap" type="cn.pjj.bean.OrderItems">
+        <id property="id" column="id"/>
+        <result property="ordertime" column="ordertime" />
+        <result property="quantity" column="quantity" />
+        <result property="price" column="price" />
+        <association property="book" column="book_id" select="cn.pjj.dao.BookDao.find"
+                     javaType="cn.pjj.bean.Book"/>
+    </resultMap>
+    <insert id="add" parameterType="cn.pjj.bean.OrderItems">
+        insert into orderitems values(#{id},#{ordertime},#{quantity},#{price},#{book.id},#{order.id})
+    </insert>
+    <delete id="delete" parameterType="String">
+        delete from orderitems where order_id=#{orderid}
+    </delete>
+    <select id="findByOrderId" resultMap="OrderitemsMap">
+        select * from orderitems where order_id=#{orderid}
+    </select>
+</mapper>
