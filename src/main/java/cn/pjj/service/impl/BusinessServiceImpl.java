@@ -138,7 +138,10 @@ public class BusinessServiceImpl implements BusinessService {
 
     @Override
     public Order findOrderById(String id) {
-        return orderDao.find(id);
+        Order order = orderDao.find(id);
+        Set<OrderItems> items = orderItemsDao.findByOrderId(id);
+        order.setOrderItems(items);
+        return order;
     }
 
     @Override

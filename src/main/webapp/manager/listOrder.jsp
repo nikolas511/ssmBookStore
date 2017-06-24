@@ -31,12 +31,12 @@
 						${order.state==false?'未发货':'已发货' }
 					</td>
 					<td>
-						${order.price }
+						${order.totalprice }
 					</td>
 					<td>
 						<a
-							href="${pageContext.request.contextPath }/manager/OrderServlet?method=find&id=${order.id }">查看明细</a>
-						<a href="${pageContext.request.contextPath }/manager/OrderServlet?method=delete&id=${order.id }">删除</a>
+							href="${pageContext.request.contextPath }/manager/OrderHandler/detailsOrder.action?id=${order.id }">查看明细</a>
+						<a href="${pageContext.request.contextPath }/manager/OrderHandler/deleteOrder.action?id=${order.id }">删除</a>
 					</td>
 				</tr>
 			</c:forEach>

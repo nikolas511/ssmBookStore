@@ -7,7 +7,7 @@
   </head>
   <body>
    	<br/><br/>
-   	<form action="${pageContext.request.contextPath}/manager/CategoryServlet?method=update" method="post">
+   	<form action="${pageContext.request.contextPath}/manager/CategoryHandler/updateCategory.action" method="post">
    		<table width="500px;">
    			<input type="hidden" name="id" value="${category.id}">
     	<tr>
@@ -19,11 +19,10 @@
     		<td><textarea rows="4" cols="40" name="description">${category.description}</textarea></td>
     	</tr>
     	<tr>
-    		<td><a href="${pageContext.request.contextPath}/WEB-INF/Mymessage.jsp">取消修改</a></td>
+    		<td><a href="${pageContext.request.contextPath}/Mymessage.jsp">取消修改</a></td>
     		<td><input type="submit" value="确认修改"></td>
     	</tr>
     	</table>
-   		
    	</form>
   </body>
 </html>

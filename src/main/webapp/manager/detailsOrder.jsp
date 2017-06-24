@@ -15,9 +15,9 @@
    				<td>数量</td>
    				<td>应收货款</td>
    			</tr>
-   			<c:forEach items="${order.orderitems}" var="item">
+   			<c:forEach items="${order.orderItems}" var="item">
    			<tr>
-   				<td>${item.book.name}</td>
+   				<td>${item.book.bookname}</td>
    				<td>${item.book.price}</td>
    				<td>${item.quantity}</td>
    				<td>${item.quantity}*${item.book.price}</td>
@@ -25,7 +25,7 @@
    			</c:forEach>
    			<tr>
    				<td>总计货款:</td>
-   				<td>${order.price }</td>
+   				<td>${order.totalprice }</td>
    			</tr>
    		</table>
    	<table style="border-style:solid;" width="90%">
@@ -41,13 +41,13 @@
   		<tr>
   			<td>${order.user.username }</td>
   			<td>${order.user.phone }</td>
-  			<td>${order.user.cellphone }</td>
+  			<td>${order.user.birthday }</td>
   			<td>${order.user.address }</td>
   			<td>${order.user.email }</td>
   		</tr>
   	</table>
   	<c:if test="${order.state==false}">
-  		<a href="${pageContext.request.contextPath }/manager/OrderServlet?method=update&id=${order.id}">确认发货</a>
+  		<a href="${pageContext.request.contextPath }/manager/OrderHandler/updateState.action?id=${order.id}">确认发货</a>
   	</c:if>
   </body>
 </html>

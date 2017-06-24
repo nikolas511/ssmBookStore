@@ -21,8 +21,8 @@
    				<td>${category.name }</td>
 	   			<td>${category.description }</td>
 	   			<td>
-	   				<a href="${pageContext.request.contextPath }/manager/CategoryServlet?method=updateForm&id=${category.id}">修改</a>
-	   				<a href="${pageContext.request.contextPath }/manager/CategoryServlet?method=delete&id=${category.id}">删除</a>
+	   				<a href="${pageContext.request.contextPath }/manager/CategoryHandler/updateCategoryUI.action?id=${category.id}">修改</a>
+	   				<a href="${pageContext.request.contextPath }/manager/CategoryHandler/deleteCategory.action?id=${category.id}">删除</a>
 	   			</td>
    			</tr>
    		</c:forEach>

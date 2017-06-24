@@ -19,14 +19,14 @@
    		
    		<c:forEach var="book" items="${books}">
    			<tr>
-   				<td>${book.name }</td>
+   				<td>${book.bookname }</td>
    				<td>${book.price }</td>
    				<td>${book.author }</td>
    				<td>${book.image }</td>
 	   			<td>${book.description }</td>
 	   			<td>
-	   				<a href="${pageContext.request.contextPath }/manager/BookServlet?method=updateForm&id=${book.id}">修改</a>
-	   				<a href="${pageContext.request.contextPath }/manager/BookServlet?method=delete&id=${book.id}">删除</a>
+	   				<a href="${pageContext.request.contextPath }/manager/BookHandler/updateUI.action?id=${book.id}">修改</a>
+	   				<a href="${pageContext.request.contextPath }/manager/BookHandler/delete.action?id=${book.id}">删除</a>
 	   			</td>
    			</tr>
    		</c:forEach>
