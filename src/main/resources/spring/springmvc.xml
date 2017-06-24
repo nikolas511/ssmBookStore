@@ -18,7 +18,7 @@
             http://www.springframework.org/schema/aop/spring-aop.xsd "
        default-autowire="byName">
     <!-- 开启扫描 设置使用注解的类所在的包 此处扫描controller-->
-    <context:component-scan base-package="cn.pjj.controller"></context:component-scan>
+    <context:component-scan base-package="cn.pjj.managerHandler,cn.pjj.clientHandler"></context:component-scan>
 
     <!-- 使用 mvc:annotation-driven代替上边注解映射器和注解适配器配置
  mvc:annotation-driven默认加载很多的参数绑定方法，
@@ -36,7 +36,7 @@
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 配置jsp路径的前缀 -->
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/"/>
         <!-- 配置jsp路径的后缀 -->
         <property name="suffix" value=".jsp"/>
     </bean>

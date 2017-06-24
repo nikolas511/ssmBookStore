@@ -168,8 +168,8 @@ public class BusinessServiceImpl implements BusinessService {
 
     @Override
     public void deleteOrder(String id) {
-        orderDao.delete(id);
         orderItemsDao.delete(id);
+        orderDao.delete(id);
     }
 
 }

@@ -7,7 +7,7 @@
         select * from category where id=#{id}
     </select>
     <delete id="delete" parameterType="String">
-        delete from books where id=#{id}
+        delete from category where id=#{id}
     </delete>
     <select id="getAll" resultType="cn.pjj.bean.Category">
         select * from category
