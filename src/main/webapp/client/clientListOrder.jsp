@@ -31,11 +31,11 @@
 						${order.state==false?'未发货':'已发货' }
 					</td>
 					<td>
-						${order.price }
+						${order.totalprice }
 					</td>
 					<td>
 						<a
-							href="${pageContext.request.contextPath }/client/ListOrderServlet?method=details&id=${order.id }">查看明细</a>
+							href="${pageContext.request.contextPath }/client/UserOrderHandler/detailsOrder.action?id=${order.id }">查看明细</a>
 					</td>
 				</tr>
 			</c:forEach>

@@ -6,22 +6,22 @@
   	<title>用户注册</title>
   </head>
   <body style="background-color: #F5F5DC">
-		<form action="${pageContext.request.contextPath}/client/RegisterLoginServlet?method=register" method="post">
+		<form action="${pageContext.request.contextPath}/UserHandler/register.action" method="post">
 		 <table align="left">
 		   	<tr><td>用户名:</td><td><input type="text" name="username" value="${formBean.username }" style="width: 200px"></input>
 		   	<span style="color:red" class="message">${formBean.errors['username']}${message}</span></td></tr>
 		   	<%--${formBean.errors.username} el表达式还可以这样写--%>
-		   	<tr><td>密码:</td><td><input type="password" name="password1" value="${formBean.password1 }" style="width: 200px"></input>
+		   	<tr><td>密码:</td><td><input type="password" name="password" value="${formBean.password1 }" style="width: 200px"></input>
 		   	<span style="color:red" class="message">${formBean.errors['password1']}</span></td></tr>
 		   	
-		   	<tr><td>确认密码:</td><td><input type="password" name="password2" value="${formBean.password2 }" style="width: 200px"></input>
-		   	<span style="color:red" class="message">${formBean.errors['password2']}</span></td></tr>
+		   <%--	<tr><td>确认密码:</td><td><input type="password" name="password2" value="${formBean.password2 }" style="width: 200px"></input>
+		   	<span style="color:red" class="message">${formBean.errors['password2']}</span></td></tr>--%>
 		   	
 		   	<tr><td>电话:</td><td><input type="text" name="phone" value="${formBean.phone }" style="width: 200px"></input>
 		   	<span style="color:red" class="message">${formBean.errors['phone']}</span></td></tr>
-		   	
-		   	<tr><td>手机:</td><td><input type="text" name="cellphone" value="${formBean.cellphone }" style="width: 200px"></input>
-		   	<span style="color:red" class="message">${formBean.errors['cellphone']}</span></td></tr>
+		   	<!-- 因设计数据转换暂时不存生日-->
+		   	<%--<tr><td>生日:</td><td><input type="text" name="birthday" value="${formBean.cellphone }" style="width: 200px"></input>
+		   	<span style="color:red" class="message">${formBean.errors['cellphone']}</span>格式:yyyy-mm-dd</td></tr>--%>
 		   	
 		   	<tr><td>邮箱:</td><td><input type="text" name="email" value="${formBean.email }" style="width: 200px"></input>
 		   	<span style="color:red" class="message">${formBean.errors['email']}</span></td></tr>

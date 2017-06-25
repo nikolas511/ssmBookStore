@@ -27,6 +27,9 @@
     <select id="find" parameterType="String" resultMap="bookMapper">
         select * from books where id=#{id}
     </select>
+    <select id="getBookByCategoryId" parameterType="String" resultMap="bookMapper">
+        select * from books where category_id=#{categoryid}
+    </select>
     <select id="getAll" resultMap="bookMapper">
         select * from books
     </select>

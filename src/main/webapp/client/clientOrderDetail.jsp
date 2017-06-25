@@ -15,9 +15,9 @@
    				<td>数量</td>
    				<td>应收货款</td>
    			</tr>
-   			<c:forEach items="${clientorder.orderitems}" var="item">
+   			<c:forEach items="${clientorder.orderItems}" var="item">
    			<tr>
-   				<td>${item.book.name}</td>
+   				<td>${item.book.bookname}</td>
    				<td>${item.book.price}</td>
    				<td>${item.quantity}</td>
    				<td>${item.quantity}*${item.book.price}</td>
@@ -25,7 +25,7 @@
    			</c:forEach>
    			<tr>
    				<td>总计货款:</td>
-   				<td>${clientorder.price }</td>
+   				<td>${clientorder.totalprice }</td>
    			</tr>
    		</table>
    	<table style="border-style:solid;" width="90%">
@@ -33,7 +33,7 @@
   		<tr>
   			<td>用户</td>
   			<td>电话</td>
-  			<td>手机</td>
+  			<td>生日</td>
   			<td>地址</td>
   			<td>邮箱</td>
   		</tr>
@@ -41,7 +41,7 @@
   		<tr>
   			<td>${clientorder.user.username }</td>
   			<td>${clientorder.user.phone }</td>
-  			<td>${clientorder.user.cellphone }</td>
+  			<td>${clientorder.user.birthday }</td>
   			<td>${clientorder.user.address }</td>
   			<td>${clientorder.user.email }</td>
   		</tr>

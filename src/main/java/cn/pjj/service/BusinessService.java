@@ -35,6 +35,8 @@ public interface BusinessService {
     List<Book> getAllBook();
 
     Book queryBookById(String id);
+
+    List<Book> getBookByCategoryId(String categoryid);
     /*
         目录模块
      */

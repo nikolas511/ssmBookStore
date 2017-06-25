@@ -5,6 +5,6 @@
     <title>用户首页</title>
   </head>
   <body>
-		<jsp:forward page=""></jsp:forward>
+		<jsp:forward page="/client/IndexHandler/index.action?category_id=all"></jsp:forward>
   </body>
 </html>

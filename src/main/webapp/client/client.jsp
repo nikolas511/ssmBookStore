@@ -8,25 +8,28 @@
    <body>
    		<%@include file="/client/head.jsp"%>
    <div>
-   	<div style="border:1px solid; width: 300;float:left;background-color: #CCFF66">
+   	<div style="border:1px solid; width: 300px;float:left;background-color: #CCFF66">
    		<b>书籍分类:</b>
    			<ul>
    			<c:forEach items="${categories}" var="category">
-   				<li><a href='${pageContext.request.contextPath }/client/IndexServlet?category_id=${category.id}'>${category.name}</a></li><br><br>
+   				<li><a href='${pageContext.request.contextPath }/client/IndexHandler/index.action?category_id=${category.id}'>${category.name}</a></li><br><br>
    			</c:forEach>	
    			</ul>
    	</div>
-   	<div style="border:1px solid; width:1000;float:right;background-color: #F5F5DC">
+   	<div style="border:1px solid; width:1000px;float:right;background-color: #F5F5DC">
    		<div align="center">
    		<div style="color: #A52A2A"><h3><marquee>欢迎光临!</marquee></h3></div>
-   		<c:forEach var="book" items="${pagebean.list}" varStatus="status">
+			<c:if test="${books==null}">
+				<h3>对不起,暂时没有该类书籍</h3>
+			</c:if>
+   		<c:forEach var="book" items="${books}" varStatus="status">
 	  				<div id="book">
 	  					<div id="info">
 	  							<img src="${pageContext.request.contextPath }/images/${book.image}"/><br/>
-	  						<b>${book.name }</b><br>
+	  						<b>${book.bookname }</b><br>
 	  						${book.author }
 	  						${book.price }
-	  						<a href="${pageContext.request.contextPath }/client/BuyServlet?method=listcart&id=${book.id }">加入购物车</a>
+	  						<a href="${pageContext.request.contextPath }/client/BuyHandler/buyCart.action?id=${book.id }">加入购物车</a>
 	  					<hr>
 	  					</div>
 	  					<div style="clear: both"></div>
@@ -35,9 +38,10 @@
 	  					<div style="clear: both"></div>
 	  					<br/>
 	  				</c:if>
-  				</c:forEach>
+		</c:forEach>
   		</div>
-<c:if test="${pagebean.totalRecord!=0}">
+		<!-- 分页功能 此处不实现-->
+<%--<c:if test="${pagebean.totalRecord!=0}">
 <div align="center">
   <form action="${pageContext.request.contextPath}/client/IndexServlet" method="post">
    共[<b>${pagebean.totalRecord }</b>]条记录,
@@ -46,7 +50,7 @@
     <input type="submit" value="确认">
     共[<b>${pagebean.totalPage }</b>]页,
     当前[<b>${pagebean.currentPage }</b>]页
-  	</form>  
+  	</form>
     <form action="${pageContext.request.contextPath}/client/IndexServlet" method="post">
     &nbsp;&nbsp;&nbsp;
     <a href="${pageContext.request.contextPath}/client/IndexServlet?currentPage=${pagebean.previousPage}&pageSize=${pagebean.pageSize}&category_id=${category_id}">上一页</a>
@@ -59,17 +63,17 @@
    			</c:if>
    		</c:forEach>
     <a href="${pageContext.request.contextPath}/client/IndexServlet?currentPage=${pagebean.nextPage}&pageSize=${pagebean.pageSize}&category_id=${category_id}">下一页</a>
-    
+
     <input type="text" name="currentPage" style="width: 30px"/>
      <input type="hidden" name="category_id" value="${category_id}">
     <input type="hidden" name="pageSize" value="${pagebean.pageSize}">
     <input type="submit" value=" GO " />
    </form>
-  		</div>		
+  		</div>
 </c:if>
 <c:if test="${pagebean.totalRecord==0}">
 	<h3>对不起,暂时没有该类书籍</h3>
-</c:if>
+</c:if>--%>
    	</div>
    	</div>
    </body>

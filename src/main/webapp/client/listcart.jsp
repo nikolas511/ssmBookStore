@@ -18,20 +18,20 @@
    		</tr>
    		<c:forEach items="${cart.map}" var="map">
    			<tr>
-   				<td>${map.value.book.name}</td>
+   				<td>${map.value.book.bookname}</td>
    				<td>${map.value.book.price}</td>
-   				<td>${map.value.quantity}</td>
-   				<td>${map.value.price}*${map.value.quantity}</td>
+   				<td>${map.value.number}</td>
+   				<td>${map.value.price}*${map.value.number}</td>
    			</tr>
    		</c:forEach>
    			<tr>
    				<td>合计:</td>
-   				<td>${cart.totalPrice}</td>
+   				<td>${cart.totalprice}</td>
    			</tr>
    	</table>
    		<c:if test="${cart!=null}">
-   		<a href="${pageContext.request.contextPath }/client/BuyServlet?method=order">结算订单</a>
-   		<a href="${pageContext.request.contextPath }/client/BuyServlet?method=deleteorder">删除订单</a>
+   		<a href="${pageContext.request.contextPath }/client/BuyHandler/order.action">结算订单</a>
+   		<a href="${pageContext.request.contextPath }/client/BuyHandler/delete.action">删除订单</a>
  		</c:if>
   </body>
 </html>

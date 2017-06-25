@@ -81,6 +81,12 @@ public class BusinessServiceImpl implements BusinessService {
     public Book queryBookById(String id) {
         return bookDao.find(id);
     }
+
+    @Override
+    public List<Book> getBookByCategoryId(String categoryid) {
+        return bookDao.getBookByCategoryId(categoryid);
+    }
+
     /**
      * 目录分类模块
      */
