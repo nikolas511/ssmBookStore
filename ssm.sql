@@ -128,7 +128,7 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES ('0', 'admin', 'admin', null, null, null, null);
-INSERT INTO `users` VALUES ('1', 'lotty', '666666', '2017-06-01', '113*****@qq.com', '177*****', '余桥村169号');
-INSERT INTO `users` VALUES ('2', 'nikolas', '123', '2017-06-01', '1137794851@qq.com', '177*****', '余桥村');
-INSERT INTO `users` VALUES ('3', '彭俊杰', '123456', '1996-10-01', '511022061@qq,com', '17857093685', '桂苑2-404');
+INSERT INTO `users` VALUES ('1', 'lotty', '666666', '2017-06-01', '113*****@qq.com', '177*****', '王***号');
+INSERT INTO `users` VALUES ('2', 'n**as', '123', '2017-06-01', '1*****4851@qq.com', '177*****', '***');
+INSERT INTO `users` VALUES ('3', '***', '123456', '1996-10-01', '5*****61@qq,com', '17*****85', '桂苑2-404');
 INSERT INTO `users` VALUES ('4', 'aaa', '123', '2017-06-09', 'aaa@aa.com', 'asdf', 'aaaaaa');
